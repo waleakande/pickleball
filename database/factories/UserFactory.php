@@ -26,3 +26,20 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->define(Event::class, function (Faker $faker) {
+    $start_date = \Carbon\Carbon::now()->addDays($faker->randomElement([1,2,3,4,5,6,7,8,9,10]));
+    $end_date = $start_date->copy()->addDays($faker->randomElement([1,2,3,4,5,6,7,8,9,10]));
+    return [
+        'title' => $faker->sentence(5),
+        'description' => $faker->paragraph(20),
+        'address' => $faker->address,
+        'lat' => $faker->latitude,
+        'long' => $faker->longitude,
+        'start_date' => $start_date->format('Y-m-d'),
+        'end_date' => $end_date->format('Y-m-d'),
+        'user_id' => factory(User::class)->create([
+            'password' => bcrypt('password'),
+        ])->id,
+    ];
+});
