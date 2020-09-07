@@ -27,7 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Event::class, function (Faker $faker) {
+$factory->define(\App\Modules\Event\Event::class, function (Faker $faker) {
     $start_date = \Carbon\Carbon::now()->addDays($faker->randomElement([1,2,3,4,5,6,7,8,9,10]));
     $end_date = $start_date->copy()->addDays($faker->randomElement([1,2,3,4,5,6,7,8,9,10]));
     return [

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Event;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
